@@ -10,6 +10,7 @@ import { Recipe } from '../recipes/recipe.model';
 
 export class DataStorageService {
 
+//    recipes:Recipe[] = [];
     constructor( private http: HttpClient, private recipeService: RecipeService) { }
 
     storeRecipes(){
@@ -21,12 +22,6 @@ export class DataStorageService {
     }
 
     getRecipes() {
-        this.http.get('https://cousine-b6d43.firebaseio.com/recipes.json')
-        .subscribe( 
-            (response: Response) => {
-                console.log(response);
-            //const recipes: Recipe[] = response.json();
-            //this.recipeService.setRecipes(recipes);
-        });
+       return this.http.get<Recipe[]>('https://cousine-b6d43.firebaseio.com/recipes.json')
     }
 }
